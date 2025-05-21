@@ -1,0 +1,4 @@
+Method,Name,Error,Occurrences
+GET,/,CatchResponseError('Failed to load homepage: 0'),281
+GET,/,CatchResponseError('Failed to simulate task action: 0'),67
+POST,/validateTask,CatchResponseError('Cloud Function failed: '),544
