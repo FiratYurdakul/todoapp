@@ -1,46 +1,90 @@
-# Getting Started with Create React App
+# Todo Cloud Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A cloud-native To-Do List application deployed on Google Cloud Platform. This project demonstrates the implementation of a cloud-native architecture using three key components:
 
-## Available Scripts
+1. **Frontend**: React application containerized and deployed on Google Kubernetes Engine (GKE)
+2. **Serverless Function**: Task validation using Google Cloud Functions
+3. **Database**: MongoDB running on Google Compute Engine VM
 
-In the project directory, you can run:
+## Architecture
 
-### `npm start`
+```
+┌─────────────┐     ┌───────────────┐     ┌───────────────┐
+│   Frontend  │────▶│ Task Validator│────▶│  MongoDB VM   │
+│   (GKE)     │◀────│(Cloud Function)│◀────│(Compute Engine)│
+└─────────────┘     └───────────────┘     └───────────────┘
+       ▲
+       │
+       ▼
+┌─────────────┐
+│    Users    │
+└─────────────┘
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Create, read, update, and delete tasks
+- Task validation using serverless function
+- Persistent storage in MongoDB
+- Responsive UI with Material UI
+- Cloud-native deployment with Kubernetes
 
-### `npm test`
+## Technology Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**: React, TypeScript, Material UI
+- **Serverless**: Google Cloud Functions (Node.js)
+- **Database**: MongoDB
+- **Infrastructure**: Google Kubernetes Engine, Google Compute Engine
+- **Containerization**: Docker
 
-### `npm run build`
+## Development
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Local Development
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start development server
+npm start
 
-### `npm run eject`
+# Start mock API server
+npm run server
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Deployment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application can be deployed to Google Cloud Platform using the provided scripts:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Deploy without Terraform (recommended)
+./deploy-no-terraform.sh YOUR_PROJECT_ID
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Deploy with Terraform
+./deploy.sh YOUR_PROJECT_ID
+```
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `/src` - React frontend code
+- `/cloud-functions` - Google Cloud Functions code
+- `/k8s` - Kubernetes deployment files
+- `/terraform` - Infrastructure as Code (Terraform)
+- `/vm-setup` - VM configuration scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Performance Testing
+
+Performance testing is done using Locust:
+
+```bash
+# Install Locust
+pip install locust
+
+# Run tests
+cd locust
+locust -f locustfile.py
+```
+
+## License
+
+MIT
