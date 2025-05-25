@@ -6,20 +6,6 @@ A cloud-native To-Do List application deployed on Google Cloud Platform. This pr
 2. **Serverless Function**: Task validation using Google Cloud Functions
 3. **Database**: MongoDB running on Google Compute Engine VM
 
-## Architecture
-
-```
-┌─────────────┐     ┌───────────────┐     ┌───────────────┐
-│   Frontend  │────▶│ Task Validator│────▶│  MongoDB VM   │
-│   (GKE)     │◀────│(Cloud Function)│◀────│(Compute Engine)│
-└─────────────┘     └───────────────┘     └───────────────┘
-       ▲
-       │
-       ▼
-┌─────────────┐
-│    Users    │
-└─────────────┘
-```
 
 ## Features
 
