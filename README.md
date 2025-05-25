@@ -79,13 +79,15 @@ Test Case 1: Frontend Kubernetes Scalability Testing
 Heavy bash script load testing to evaluate HPA (Horizontal Pod Autoscaler) scaling behavior:
 
 # Monitor HPA scaling in a separate terminal
+```
 kubectl get hpa todo-frontend-hpa --watch
-
+```
 Test Case 2: Locust Load Testing for Stability
 Comprehensive user workflow simulation to test server stability:
 bash# Install Locust
+```
 pip install locust
-
+```
 # Run stability test
 ```
 locust -f kubernetes_load_test.py --headless -u 500 -r 10 -t 5m \
