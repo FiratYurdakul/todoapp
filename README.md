@@ -74,15 +74,24 @@ The application can be deployed to Google Cloud Platform using the provided scri
 
 ## Performance Testing
 
-Performance testing is done using Locust:
+The application includes two comprehensive performance testing approaches to evaluate scalability and stability:
+Test Case 1: Frontend Kubernetes Scalability Testing
+Heavy bash script load testing to evaluate HPA (Horizontal Pod Autoscaler) scaling behavior:
 
-```bash
-# Install Locust
+# Monitor HPA scaling in a separate terminal
+kubectl get hpa todo-frontend-hpa --watch
+
+Test Case 2: Locust Load Testing for Stability
+Comprehensive user workflow simulation to test server stability:
+bash# Install Locust
 pip install locust
 
-# Run tests
-cd locust
-locust -f locustfile.py
+# Run stability test
+```
+locust -f kubernetes_load_test.py --headless -u 500 -r 10 -t 5m \
+  --host=http://35.239.33.10 \
+  --html=locust_report.html \
+  --csv=results
 ```
 
 ## License
